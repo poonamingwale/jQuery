@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Gallery with jQuery Effects</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <style>
+    body {
+    
+
+    .gallery-item {
+      margin-bottom: 20px;
+      transition: transform 0.3s ease;
+    }
+    .gallery-item:hover {
+      transform: scale(1.05);
+    }
+    .filter-btn {
+      margin: 10px 5px;
+      cursor: pointer;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center my-4">Image Gallery</h1>
+    
+    <!-- Filtering buttons -->
+    <div class="text-center">
+      <button class="btn btn-primary filter-btn" data-filter="all">All</button>
+      <button class="btn btn-primary filter-btn" data-filter="nature">Nature</button>
+      <button class="btn btn-primary filter-btn" data-filter="city">City</button>
+      <button class="btn btn-primary filter-btn" data-filter="animals">Animals</button>
+    </div>
+
+    <!-- Image gallery -->
+    <div class="row mt-4" id="gallery">
+      <!-- Example images with categories -->
+      <div class="col-md-4 gallery-item nature">
+        <img src="https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=1024x1024&w=0&k=20&c=z8_rWaI8x4zApNEEG9DnWlGXyDIXe-OmsAyQ5fGPVV8=" class="img-fluid" alt="Nature Image 1">
+      </div>
+      <div class="col-md-4 gallery-item city">
+        <img src="https://images.pexels.com/photos/290595/pexels-photo-290595.jpeg?cs=srgb&dl=pexels-pixabay-290595.jpg&fm=jpg" class="img-fluid" alt="City Image 1">
+      </div>
+      <div class="col-md-4 gallery-item animals">
+        <img src="https://media.istockphoto.com/id/520839324/photo/wild-elephant.jpg?s=612x612&w=0&k=20&c=jnDbuC5oqdaH_OCVsBGa19A5sCx7EVKj94DdVA6Xe0g=" class="img-fluid" alt="Animals Image 1">
+      </div>
+      <div class="col-md-4 gallery-item nature">
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/035/480/098/small_2x/ai-generated-analyze-the-impact-of-climate-change-on-the-absolute-green-tree-nature-background-considering-its-effects-on-both-plant-life-and-the-migratory-patterns-of-colorful-birds-photo.jpg" class="img-fluid" alt="Nature Image 2">
+      </div>
+      <div class="col-md-4 gallery-item city">
+        <img src="https://natureconservancy-h.assetsadobe.com/is/image/content/dam/tnc/nature/en/photos/i/s/iStock-509662042-1800.jpg?crop=0%2C72%2C1800%2C990&wid=4000&hei=2200&scl=0.45" class="img-fluid" alt="City Image 2">
+      </div>
+      <div class="col-md-4 gallery-item animals">
+        <img src="https://hips.hearstapps.com/hmg-prod/images/cute-baby-animals-1558535060.jpg" class="img-fluid" alt="Animals Image 2">
+      </div>
+
+      <div class="col-md-4 gallery-item nature">
+        <img src="https://media.istockphoto.com/id/1403500817/photo/the-craggies-in-the-blue-ridge-mountains.jpg?s=612x612&w=0&k=20&c=N-pGA8OClRVDzRfj_9AqANnOaDS3devZWwrQNwZuDSk=" class="img-fluid" alt="Nature Image 2">
+      </div>
+      <div class="col-md-4 gallery-item city">
+        <img src="https://media.istockphoto.com/id/536777045/photo/new-york-street.jpg?s=612x612&w=0&k=20&c=iCa1nBJHdZY4Z0Fh8nYMZ_Ag1nlMlL1keGrUKGzSaAk=" class="img-fluid" alt="City Image 2">
+      </div>
+      <div class="col-md-4 gallery-item animals">
+        <img src="https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg" class="img-fluid" alt="Animals Image 2">
+
+      
+      
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Fade transition effect for the image filtering
+      $('.filter-btn').click(function() {
+        var filter = $(this).data('filter');
+        
+        if (filter === 'all') {
+          // Show all images with a fade effect
+          $('#gallery .gallery-item').fadeIn();
+        } else {
+          // Hide images that don't match the filter and show the matching ones
+          $('#gallery .gallery-item').each(function() {
+            var categories = $(this).attr('class').split(' ');
+            if (categories.includes(filter)) {
+              $(this).fadeIn();
+            } else {
+              $(this).fadeOut();
+            }
+          });
+        }
+      });
+
+        $('.gallery-item').each(function (index) {
+            $(this).delay(300 * index).fadeIn(1000); // Fade in each image with a delay
+        });
+    });
+  </script>
+</body>
+</html>
